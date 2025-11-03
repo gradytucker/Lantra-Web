@@ -5,3 +5,4 @@ dist
 .idea
 .tanstack
 .vscode
+.DS_Store
