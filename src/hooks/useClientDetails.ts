@@ -1,5 +1,6 @@
 import {useMemo} from 'react';
 import {browserChecker} from "@/utils/browserChecker";
+import {v4 as uuidv4} from "uuid";
 
 interface ClientDetails {
     application: String;
@@ -11,7 +12,8 @@ export const useClientDetails = (): ClientDetails => {
         return {
             application: "Lantra Web",
             browser: typeof navigator !== "undefined" && navigator.userAgent ? browserChecker(navigator.userAgent) :
-                "Unknown"
+                "Unknown",
+            id: uuidv4()
         }
     }, []);
 };
