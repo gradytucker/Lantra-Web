@@ -6,4 +6,4 @@ dist
 .tanstack
 .vscode
 .DS_Store
-.certs
+certs
