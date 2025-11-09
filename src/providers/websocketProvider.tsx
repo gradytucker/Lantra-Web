@@ -1,7 +1,7 @@
 import React, {createContext, useContext} from "react";
 import {useWebSocket} from "@/hooks/useWebsocket";
 
-const WS_URL : string = import.meta.env.VITE_API_URL;
+const WS_URL : string = import.meta.env.VITE_WSS_URL;
 
 interface WebSocketContextType {
     ws: WebSocket | null;
