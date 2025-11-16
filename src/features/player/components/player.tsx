@@ -1,4 +1,4 @@
-import { useStreamAudio } from "@/hooks/useStreamAudio";
+import { useStreamAudio } from "@/providers/AudioProvider.tsx";
 import { Box } from "@mui/system";
 import PlayButton from "./PlayButton";
 
