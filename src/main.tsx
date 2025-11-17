@@ -2,16 +2,17 @@ import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
-
 import "./styles.css";
 import reportWebVitals from "./reportWebVitals.ts";
 import { SnackbarProvider } from "./components/SnackbarProvider";
 import { WebsocketProvider } from "@/providers/WebsocketProvider.tsx";
-import { AudioStreamProvider } from "@/providers/AudioProvider.tsx";
-
+import { AudioStreamProvider } from "@/providers/AudioStreamProvider.tsx";
+import { theme } from "@/theme/theme.ts";
+import { AudioDeviceProvider } from "@/providers/AudioDeviceProvider.tsx";
 // Create a new router instance
 export const router = createRouter({
   routeTree,
@@ -38,15 +39,21 @@ if (rootElement && !rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <StrictMode>
-      <SnackbarProvider>
-        <QueryClientProvider client={queryClient}>
-          <WebsocketProvider>
-            <AudioStreamProvider>
-              <RouterProvider router={router} />
-            </AudioStreamProvider>
-          </WebsocketProvider>
-        </QueryClientProvider>
-      </SnackbarProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <SnackbarProvider>
+          <QueryClientProvider client={queryClient}>
+            <WebsocketProvider>
+              <AudioDeviceProvider>
+                <AudioStreamProvider>
+                  <RouterProvider router={router} />
+                </AudioStreamProvider>
+              </AudioDeviceProvider>
+            </WebsocketProvider>
+          </QueryClientProvider>
+        </SnackbarProvider>
+      </ThemeProvider>
+      ,
     </StrictMode>,
   );
 }
