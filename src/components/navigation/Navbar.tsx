@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
         gap: isPortrait ? 0 : 1,
         py: isPortrait ? 0 : 1,
         px: isPortrait ? 2 : 0,
-        background: "#222",
+        background: "#181825",
         color: "#fff",
         alignItems: "center",
         justifyContent: isPortrait ? "space-evenly" : "flex-start",

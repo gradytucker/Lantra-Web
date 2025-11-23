@@ -8,11 +8,12 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { routeTree } from "./routeTree.gen";
 import "./styles.css";
 import reportWebVitals from "./reportWebVitals.ts";
-import { SnackbarProvider } from "./components/SnackbarProvider";
+import { SnackbarProvider } from "./components/snackbar/SnackbarProvider.tsx";
 import { WebsocketProvider } from "@/providers/WebsocketProvider.tsx";
 import { AudioStreamProvider } from "@/providers/AudioStreamProvider.tsx";
 import { theme } from "@/theme/theme.ts";
 import { AudioDeviceProvider } from "@/providers/AudioDeviceProvider.tsx";
+import "./index.css";
 // Create a new router instance
 export const router = createRouter({
   routeTree,

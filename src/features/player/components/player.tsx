@@ -1,9 +1,13 @@
 import { useStreamAudio } from "@/providers/AudioStreamProvider.tsx";
 import { Container } from "@mui/system";
 import PlayButton from "./PlayButton";
-import { type SourceDevice, useAudioDevices } from "@/providers/AudioDeviceProvider.tsx";
+import {
+  type SourceDevice,
+  useAudioDevices,
+} from "@/providers/AudioDeviceProvider.tsx";
 import { useState } from "react";
-import DeviceChooser from "@/features/player/components/DeviceChooser.tsx";
+import DeviceChooser from "@/features/deviceChooser/components/DeviceChooser.tsx";
+import { Button } from "@mui/material";
 
 const OpusPlayer: React.FC = () => {
   const { isPlaying, startPlayback, stopPlayback } = useStreamAudio();
@@ -20,8 +24,14 @@ const OpusPlayer: React.FC = () => {
     }
   };
 
+  const handleBackButtonClick = () => {
+    setSelectedDevice(undefined);
+    stopPlayback();
+  };
+
   return selectedDevice ? (
     <Container>
+      <Button onClick={handleBackButtonClick}>back</Button>
       <PlayButton isPlaying={isPlaying} onClick={onPlayButtonClick} />
     </Container>
   ) : (

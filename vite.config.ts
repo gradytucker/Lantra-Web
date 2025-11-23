@@ -1,24 +1,28 @@
 import { defineConfig } from "vite";
 import viteReact from "@vitejs/plugin-react";
 import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [TanStackRouterVite({ autoCodeSplitting: true }), viteReact()],
+  plugins: [
+    TanStackRouterVite({ autoCodeSplitting: true }),
+    viteReact(),
+    tailwindcss(),
+  ],
   resolve: {
     alias: {
       "@": "/src",
     },
   },
-    server: {
-        https: {
-            key: fs.readFileSync(path.resolve(__dirname, 'certs/key.pem')),
-            cert: fs.readFileSync(path.resolve(__dirname, 'certs/cert.pem')),
-        },
-        host: '0.0.0.0', // Allow access from other LAN devices
-        port: 5173,
+  server: {
+    https: {
+      key: fs.readFileSync(path.resolve(__dirname, "certs/key.pem")),
+      cert: fs.readFileSync(path.resolve(__dirname, "certs/cert.pem")),
     },
-
+    host: "0.0.0.0", // Allow access from other LAN devices
+    port: 5173,
+  },
 });
