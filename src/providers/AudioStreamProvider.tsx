@@ -1,6 +1,8 @@
 import {
   createContext,
+  type Dispatch,
   type ReactNode,
+  type SetStateAction,
   useContext,
   useEffect,
   useRef,
@@ -10,6 +12,8 @@ import { useWS } from "@/providers/WebsocketProvider";
 
 interface AudioStreamContextValue {
   isPlaying: boolean;
+  playingDeviceId: string | undefined;
+  setPlayingDeviceId: Dispatch<SetStateAction<string | undefined>>;
   startPlayback: () => Promise<void>;
   stopPlayback: () => Promise<void>;
 }
@@ -21,6 +25,7 @@ const CHANNELS = 2;
 
 export const AudioStreamProvider = ({ children }: { children: ReactNode }) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [playingDeviceId, setPlayingDeviceId] = useState<string | undefined>();
 
   const audioCtxRef = useRef<AudioContext | null>(null);
   const workletNodeRef = useRef<AudioWorkletNode | null>(null);
@@ -99,7 +104,13 @@ export const AudioStreamProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <AudioStreamContext.Provider
-      value={{ isPlaying, startPlayback, stopPlayback }}
+      value={{
+        isPlaying,
+        playingDeviceId,
+        setPlayingDeviceId,
+        startPlayback,
+        stopPlayback,
+      }}
     >
       {children}
     </AudioStreamContext.Provider>

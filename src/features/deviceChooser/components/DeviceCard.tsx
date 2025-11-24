@@ -2,8 +2,8 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import SmartphoneIcon from "@mui/icons-material/Smartphone";
 import type { SourceDevice } from "@/providers/AudioDeviceProvider.tsx";
-import { ActiveBadge } from "./ActiveBadge";
 import { LiquidCard } from "@/components/card/LiquidCard";
+import { useStreamAudio } from "@/providers/AudioStreamProvider.tsx";
 
 interface DeviceCardProps {
   device: SourceDevice;
@@ -16,6 +16,7 @@ export const DeviceCard: React.FC<DeviceCardProps> = ({
   isSelected,
   onSelect,
 }) => {
+  const { isPlaying, playingDeviceId } = useStreamAudio();
   return (
     <LiquidCard isSelected={isSelected} onClick={onSelect}>
       {/* Top Row: Phone icon (left) + Streaming Badge (right) */}
@@ -42,34 +43,36 @@ export const DeviceCard: React.FC<DeviceCardProps> = ({
         </Box>
 
         {/* Streaming Badge */}
-        <Box
-          sx={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 0.8,
-            px: 1,
-            py: 0.3,
-            borderRadius: 1,
-            border: "1px solid rgba(0,255,100,0.4)",
-            backgroundColor: "rgba(0,255,100,0.1)",
-          }}
-        >
+        {isPlaying && device.id === playingDeviceId && (
           <Box
             sx={{
-              width: 8,
-              height: 8,
-              borderRadius: "50%",
-              backgroundColor: "rgb(0,255,80)",
-              boxShadow: "0 0 6px rgba(0,255,80,0.8)",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 0.8,
+              px: 1,
+              py: 0.3,
+              borderRadius: 1,
+              border: "1px solid rgba(0,255,100,0.4)",
+              backgroundColor: "rgba(0,255,100,0.1)",
             }}
-          />
-          <Typography
-            variant="caption"
-            sx={{ color: "rgb(0,190,70)", fontWeight: 600 }}
           >
-            Streaming
-          </Typography>
-        </Box>
+            <Box
+              sx={{
+                width: 8,
+                height: 8,
+                borderRadius: "50%",
+                backgroundColor: "rgb(0,255,80)",
+                boxShadow: "0 0 6px rgba(0,255,80,0.8)",
+              }}
+            />
+            <Typography
+              variant="caption"
+              sx={{ color: "rgb(0,190,70)", fontWeight: 600 }}
+            >
+              Streaming
+            </Typography>
+          </Box>
+        )}
       </Box>
 
       {/* Centered Text */}
@@ -90,11 +93,6 @@ export const DeviceCard: React.FC<DeviceCardProps> = ({
         <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.8)" }}>
           {device.type}
         </Typography>
-      </Box>
-
-      {/* Bottom Row: Active Badge in bottom left */}
-      <Box display="flex" justifyContent="flex-start">
-        <ActiveBadge />
       </Box>
     </LiquidCard>
   );
