@@ -9,6 +9,8 @@ import { useWS } from "@/providers/WebsocketProvider";
 
 export interface SourceDevice {
   id: string;
+  name: string;
+  type: string;
 }
 
 interface AudioDeviceContextValue {
@@ -31,7 +33,7 @@ export const AudioDeviceProvider = ({ children }: { children: ReactNode }) => {
         const data = JSON.parse(event.data);
         if (data.type === "tcp_devices") {
           // update list of connected Android devices
-          setDevices(data.devices.map((id: string) => ({ id })));
+          setDevices(data.devices);
         }
       } catch {
         // non-JSON messages (like audio chunks) are ignored

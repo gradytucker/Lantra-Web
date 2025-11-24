@@ -85,10 +85,10 @@ export const DeviceCard: React.FC<DeviceCardProps> = ({
           variant="h6"
           sx={{ color: "#fff", textShadow: "0 1px 6px rgba(0,0,0,0.4)" }}
         >
-          {device.id}
+          {device.name}
         </Typography>
         <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.8)" }}>
-          ID: {device.id}
+          {device.type}
         </Typography>
       </Box>
 
