@@ -1,5 +1,11 @@
 import React from "react";
-import { Card, CardActionArea, CardContent, type SxProps, type Theme } from "@mui/material";
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  type SxProps,
+  type Theme,
+} from "@mui/material";
 
 interface LiquidCardProps {
   children: React.ReactNode;
