@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-  type SxProps,
-  type Theme,
-} from "@mui/material";
+import { Card, CardActionArea, CardContent, type SxProps, type Theme } from "@mui/material";
 
 interface LiquidCardProps {
   children: React.ReactNode;
@@ -28,14 +22,14 @@ export const LiquidCard: React.FC<LiquidCardProps> = ({
         position: "relative",
         borderRadius: 3,
         cursor: onClick ? "pointer" : "default",
-        background: "rgba(0,0,0,0.2)",
+        background: "rgba(0,0,0,0.3)",
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
         border: "1px solid rgba(255,255,255,0.2)",
         boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
         transition: "all 0.3s ease",
         "&:hover": {
-          background: onClick ? "rgba(10,10,10,0.4)" : undefined,
+          background: onClick ? "rgba(0,0,0,0.4)" : undefined,
           boxShadow: onClick ? "0 12px 48px rgba(0,0,0,0.3)" : undefined,
           transform: onClick ? "translateY(-3px)" : undefined,
         },
