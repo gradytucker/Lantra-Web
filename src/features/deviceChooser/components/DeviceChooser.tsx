@@ -19,14 +19,18 @@ const DeviceChooser: React.FC<DeviceChooserProps> = ({
   setSelectedDevice,
 }) => {
   return (
-    <Container sx={{ position: "absolute" }}>
+    <Container
+      maxWidth={false}
+      disableGutters
+      sx={{ position: "relative", width: "100vw", minHeight: "100vh", p: 0 }}
+    >
       <Plasma />
       <Box
         display="flex"
         flexDirection="column"
         alignItems="center"
         justifyContent="center"
-        height="100vh"
+        minHeight="100vh"
       >
         {devices.length > 0 ? (
           <DeviceChooserHeading

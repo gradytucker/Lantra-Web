@@ -1,7 +1,10 @@
 import { useStreamAudio } from "@/providers/AudioStreamProvider.tsx";
 import { Container } from "@mui/system";
 import PlayButton from "./PlayButton";
-import { type SourceDevice, useAudioDevices } from "@/providers/AudioDeviceProvider.tsx";
+import {
+  type SourceDevice,
+  useAudioDevices,
+} from "@/providers/AudioDeviceProvider.tsx";
 import { useState } from "react";
 import DeviceChooser from "@/features/deviceChooser/components/DeviceChooser.tsx";
 import { Button } from "@mui/material";
@@ -29,7 +32,11 @@ const OpusPlayer: React.FC = () => {
   };
 
   return selectedDevice ? (
-    <Container>
+    <Container
+      maxWidth={false}
+      disableGutters
+      sx={{ width: "100vw", minHeight: "100vh", backgroundColor: "blue", p: 0 }}
+    >
       <Button onClick={handleBackButtonClick}>back</Button>
       <PlayButton isPlaying={isPlaying} onClick={onPlayButtonClick} />
     </Container>
